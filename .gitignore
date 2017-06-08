@@ -1,0 +1,9 @@
+**/packages/
+**/obj/
+**/bin/
+**/Debug/
+**/Release/
+**/.vs/
+/MyFlix/**/.suo
+**/App_Data/
+.suo
