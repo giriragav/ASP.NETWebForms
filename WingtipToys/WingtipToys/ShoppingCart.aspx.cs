@@ -13,7 +13,23 @@ namespace WingtipToys
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string rawID = Request.QueryString["productID"];
+            if (!String.IsNullOrEmpty(rawID))
+            {
+                using (ShoppingCartActions sc = new ShoppingCartActions())
+                {
+                    sc.AddToCart(int.Parse(rawID));
+                }
+               // Response.Redirect("ShoppingCart.aspx");
+            }
+            
+            decimal cartTotal = 0;
 
+            ShoppingCartActions sca = new ShoppingCartActions();
+
+            lblTotal.Text = String.Format("{0:c}",sca.GetTotal());
+            
+            
         }
 
         public List<CartItem> GetShoppingCartItems()
