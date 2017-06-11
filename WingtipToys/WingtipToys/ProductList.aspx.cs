@@ -16,11 +16,11 @@ namespace WingtipToys
 
         }
 
-        public IQueryable<Product> GetProducts([QueryString("id")] int? productID)
+        public IQueryable<Product> GetProducts([QueryString("id")] int? categoryID)
         {
             var db = new ProductContext();
 
-            return db.Products.Where(p => p.CategoryID == productID);
+            return (categoryID.HasValue && categoryID>0)?db.Products.Where(p => p.CategoryID == categoryID) :db.Products;
         }
     }
 }
