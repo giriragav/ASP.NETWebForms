@@ -23,6 +23,7 @@ namespace WingtipToys.Logic
 
             if(cartItem == null)
             {
+                cartItem = new CartItem();
                 cartItem.CartId = ShoppingCartId;
                 cartItem.ItemId = Guid.NewGuid().ToString();
                 cartItem.Quantity = 1;
