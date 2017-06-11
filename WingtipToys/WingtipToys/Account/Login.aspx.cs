@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using WingtipToys.Models;
+using WingtipToys.Logic;
 
 namespace WingtipToys.Account
 {
@@ -38,6 +39,9 @@ namespace WingtipToys.Account
                 switch (result)
                 {
                     case SignInStatus.Success:
+                        ShoppingCartActions sca = new ShoppingCartActions();
+                        String cartID = sca.GetCartID();
+                        sca.MigrateCart(cartID, Email.Text);
                         IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                         break;
                     case SignInStatus.LockedOut:

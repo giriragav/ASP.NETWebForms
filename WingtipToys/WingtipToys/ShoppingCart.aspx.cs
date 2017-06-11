@@ -24,8 +24,7 @@ namespace WingtipToys
                // Response.Redirect("ShoppingCart.aspx");
             }
             
-            decimal cartTotal = 0;
-
+            
             ShoppingCartActions sca = new ShoppingCartActions();
 
             lblTotal.Text = String.Format("{0:c}",sca.GetTotal());
