@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using WingtipToys.Models;
+using WingtipToys.Logic;
 
 namespace WingtipToys
 {
@@ -83,6 +84,15 @@ namespace WingtipToys
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+        }
+
+        protected void Page_Render(object sender, EventArgs e)
+        {
+            using(ShoppingCartActions sca = new ShoppingCartActions())
+            {
+                cartCount.InnerText = String.Format("View Cart ({0})",sca.GetCount());
+                
+            }
         }
     }
 
